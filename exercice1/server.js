@@ -1,6 +1,6 @@
 import express from 'express'
 import { readFile, writeFile } from 'fs/promises'
-import { randomBytes } from 'crypto'
+import { randomUUID } from 'crypto'
 
 const PORT = process.env.PORT || 3000
 const DATA_FILE = process.env.DATA_FILE || 'todos.json'
@@ -51,7 +51,7 @@ app.post('/todos', async (req, res) => {
 		const todos = await readTodos()
 
 		const newTodo = {
-			id: randomBytes(8).toString('hex'),
+			id: randomUUID(),
 			text: text.trim(),
 			completed,
 		}
@@ -86,6 +86,13 @@ app.patch('/todos/:id', async (req, res) => {
 	} catch (error) {
 		res.status(500).send(error)
 	}
+})
+
+app.get('/stats', async (req, res) => {
+	const todos = await readTodos()
+	res.send({
+		todosCount: todos.length,
+	})
 })
 
 app.listen(PORT, () => {

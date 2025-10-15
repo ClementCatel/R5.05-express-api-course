@@ -8,5 +8,10 @@
     "id": "16a201a74bf34419",
     "text": "Prendre RDV dentiste",
     "completed": false
+  },
+  {
+    "id": "b953fe6d-46d7-48ef-811d-fa6a1f37d57c",
+    "text": "Préparer le cours Node.js",
+    "completed": false
   }
 ]
